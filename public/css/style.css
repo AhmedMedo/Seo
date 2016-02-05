@@ -1,0 +1,130 @@
+/*
+	Author:Medo;
+*/
+body{
+    background: url(../images/nn.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/* Navbar styles */
+.navbar {min-height:70px}
+.navbar-default
+{
+    background:rgba(197, 100, 99, 0.21);
+}
+.navbar-default .navbar-brand {
+	text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    font-size: 30px;
+        background-color: transparent;
+
+}
+.navbar-brand
+{
+	padding: 22px 15px
+}
+
+
+.navbar-header a span
+{
+	color:#757579;
+}
+
+.navbar-default .navbar-nav>li>a
+{
+    color: black;
+    font-size:16px;
+    padding: 23px;
+    font-weight:bold;
+}
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav>li>a:focus
+{
+    border-bottom: 3px solid blue;
+}
+
+
+.navbar-right .dropdown-menu {left:0;right:auto}
+
+.dropdown-menu > li > a
+{
+	padding:6px 20px;
+    font-weight:bold;
+}
+.navbar-right .btn-success
+{
+	 padding: 16px;
+    font-weight: bold;
+    margin-top: 12px;
+    border-radius: 26px;
+}
+.navbar-right .btn-default
+{
+	padding: 16px;
+    font-weight: bold;
+    margin-top: 12px;
+    border-radius: 26px;
+    margin-right: 8px
+}
+/* End of Navbar*/
+
+.box
+{
+	min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+}
+.card
+{
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 10px;
+    background-color: #FFF;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+}
+
+.card .img-thumbnail
+{
+        margin-bottom: 9px;
+
+}
+.media-image
+{
+    height: 64px;
+    width: 64px;
+}
+
+
+ /*Footer Section*/
+.footer-box
+{
+    min-height: 20px;
+    padding: 19px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+}
+footer .social-list {overflow:hidden;margin:20px 0 10px}
+
+footer .social-list li {
+    float:left;
+    margin-right:3px;
+    opacity:0.7;
+    filter:alpha(opacity=70);
+}
+footer .social-list li :hover{
+    opacity: .8
+}
