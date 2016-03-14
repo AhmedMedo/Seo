@@ -13,15 +13,14 @@
         <link href="{!!asset('css/style.css')!!}" rel="stylesheet">
 
     <link href="{!!asset('css/font-awesome/css/font-awesome.min.css')!!}" rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <script src="{!!asset('js/html5shiv.min.js')!!}"></script>
+      <script src="{!! asset('js/respond.js') !!}"></script>
     <![endif]-->
   </head>
   <body>
     <!-- Header Section -->
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default ">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -42,19 +41,61 @@
             <li><a href="{{route('home')}}">Home</a></li>
             <li><a href="#">Tutorials</a></li>
             <li><a href="#">Blog</a></li>
+           
 
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+         
+
+            @if(Auth::check())
+               @if(Auth::user()->isAdmin())
+              <li><a href="{{route('dashboard')}}">Panel</a></li>
+              @endif  
+                 <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}} <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
+                <li><a href="#"><i class="fa fa-user fa-fw"></i>profile</a></li>
+                <li><a href="{{route('logout')}}"><i class="fa fa-sign-out fa-fw"></i>logout</a></li>
               </ul>
             </li>
-            <li><button type="button" class="btn btn-default">Sign in</button></li>
-            <li><button type="button" class="btn btn-success">Sign up</button></li>
+
+
+            @else
+            @if(session('message'))
+              {{session('message')}}
+            @endif
+            <li><button type="button" class="btn btn-default btn-rounded" data-toggle="modal" data-target=".bs-example-modal-sm">Sign in</button></li>
+            <li><button type="button" class="btn btn-success btn-rounded">Sign up</button></li>
+              <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-sm mod-width">
+                 <div class="modal-content mod">
+                    <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="gridSystemModalLabel">Login</h4>
+                      </div>          
+                   {!!  Form::open(array('url'=>'/login' ,'id'=>'login_form'))!!}
+                      <div class="form-group">
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email">
+                      </div>
+                      <div class="form-group">
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+                        <a href="#">forget your password?</a>
+                      </div>
+                      
+                      <div class="checkbox">
+                        <label>
+                          <input type="checkbox" name="remember_me"> remeber me
+                        </label>
+                      </div>
+                      <div id="message"></div>
+                      
+                      <button type="submit" class="btn btn-success btn-block" id="submit">Login</button>
+                    {!!Form::close() !!}
+                    <a href="#" class="pull-right">Sign up!</a>
+
+                </div>
+              </div>
+            </div>
+            @endif
+           
 
           </ul>
         </div>
@@ -73,19 +114,24 @@
             <!-- SideBar -->
           <div class="col-lg-4 col-md-4">
                <!-- Search area --> 
-            <div class="box">
+            <div class="box shadow">
                <h4>Blog Search</h4>
+                  <form id="form">
+
                     <div class="input-group">
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" id="search">
+                        <div id="data"></div>
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
+                            <button class="btn btn-default" type="submit">
                                 <span class="glyphicon glyphicon-search"></span>
                         </button>
                         </span>
                     </div>
+                  </form>
+
             </div>
             <!-- Recent posts -->
-                  <div class="panel panel-default">
+                  <div class="panel panel-default shadow">
                     <div class="panel-heading">
                       <h3 class="panel-title">Recent posts</h3>
                     </div>
@@ -145,7 +191,7 @@
                   </div>             
 
              <!-- Top Posts -->
-                <div class="panel panel-default">
+                <div class="panel panel-default shadow">
                     <div class="panel-heading">
                       <h3 class="panel-title">Top posts</h3>
                     </div>
@@ -208,6 +254,7 @@
       </div>
     </section>
 
+    <!-- Footer -->
     <footer>
       <div class="footer-box">
         <div class="container">
@@ -223,34 +270,56 @@
                 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                 </p>
               </div>
-              <div class="col-lg-4 col-md-6">
-              <h2>Links</h2>
-              <ul class="list-unstyled">
-                <li><a href=""> Blog</a></li>
-                <li><a href="">Courses</a></li>
-                <li><a href="">contact us</a></li>
-                <li><a href="">Privacy</a></li>
-                <li><a href="">Terms of use</a></li>
-              </ul>
-              <ul class="list-unstyled social-list">
-                            <li><a href="#"><img src="{!!asset('images/social-bookmarks/facebook.png')!!}" width="48" height="48" alt="Facebook" /></a></li>
-                            <li><a href="#"><img src="{!!asset('images/social-bookmarks/gplus.png')!!}" width="48" height="48" alt="Google Plus" /></a></li>
-                            <li><a href="#"><img src="{!!asset('images/social-bookmarks/twitter.png')!!}" width="48" height="48" alt="Twitter" /></a></li>
-                          </ul>
-                
+              <div class="col-lg-3 col-md-6">
+                  <h2>Links</h2>
+                  <ul class="list-unstyled">
+                    <li><a href=""> Blog</a></li>
+                    <li><a href="">Courses</a></li>
+                    <li><a href="">contact us</a></li>
+                    <li><a href="">Privacy</a></li>
+                    <li><a href="">Terms of use</a></li>
+                  </ul>
+                  <ul class="list-unstyled social-list">
+                       <li><a href="#"><img src="{!!asset('images/social-bookmarks/facebook.png')!!}" width="48" height="48" alt="Facebook" /></a></li>
+                       <li><a href="#"><img src="{!!asset('images/social-bookmarks/gplus.png')!!}" width="48" height="48" alt="Google Plus" /></a></li>
+                       <li><a href="#"><img src="{!!asset('images/social-bookmarks/twitter.png')!!}" width="48" height="48" alt="Twitter" /></a></li>
+                   </ul>
               </div>
-              <div class="col-lg-4">S</div>
+              <div class="col-lg-5">
+                  <form class="form-inline">
+                    <div class="form-group">
+                      <input type="text" class="form-control input-lg" id="exampleInputName2" placeholder="Subscribe">
+                    </div>
+                  
+                    <button type="submit" class="btn btn-danger btn-lg">Subscribe</button>
+                  </form>            
+               </div>
 
 
             </div>
+
         </div>
       </div>
-      
+      <div class="copy-right text-center">
+                copyright &copy; <a href="#">Seo inside</a>
+            </div>
 
     </footer>
 
 
-    <script src="{!! asset('js/jquery-1.11.3.min.js')!!}"></script>
+    <script src="{!! asset('js/jquery.min.js')!!}"></script>
+   <script src="{!! asset('js/jquery-ui.min.js')!!}"></script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{!! asset('js/bootstrap.min.js')!!}"></script>  </body>
+    <script src="{!! asset('js/bootstrap.min.js')!!}"></script> 
+
+    <script src="{!! asset('js/home.js')!!}"></script>  
+
+
+
+
+
+   </body>
+
+ 
 </html>

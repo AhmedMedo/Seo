@@ -5,7 +5,7 @@ Seo website @stop
 Seo,search engine optimisation,marketing @stop
 @section('content')
               <div class="box">
-                  <h2>Posts</h2>
+                  <h2>categories</h2>
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="card">

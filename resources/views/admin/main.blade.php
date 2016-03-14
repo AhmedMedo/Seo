@@ -12,16 +12,13 @@
 
     <!-- Bootstrap -->
     <link href="{!!asset('css/bootstrap.min.css')!!}" rel="stylesheet">
-    <link href="{!!asset('css/w3.css')!!}" rel="stylesheet">
     <link href="{!!asset('css/adminstyle.css')!!}" rel="stylesheet">
     <link href="{!!asset('css/font-awesome/css/font-awesome.min.css')!!}" rel="stylesheet">
 
-    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/css/select2.min.css" rel="stylesheet" />
+      <link href="{!! asset('select2/css/select2.min.css') !!}" rel="stylesheet" />
+      <script src="{!! asset('js/jquery-1.11.3.min.js')!!}"></script>
 
-
-     <script src = "{!! asset('js/jquery-1.10.2.js') !!}"></script>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.1/js/select2.min.js"></script>
+      <script src="{!! asset('select2/js/select2.min.js') !!}"></script>
        </head>
   <body>
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -50,12 +47,10 @@ Visit site</a></li>
         </li>
 
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-user fa-lg fa-fw"></i>User <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-user fa-lg fa-fw"></i>{{Auth::user()->name}} <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#"> <i class="fa fa-pencil fa-lg fa-fw"></i>
-edit</a></li>
-            <li><a href="#"> <i class="fa fa-sign-out fa-lg fa-fw"></i>
-logout</a></li>
+            <li><a href="#"> <i class="fa fa-pencil fa-lg fa-fw"></i>edit</a></li>
+            <li><a href="{{route('logout')}}"> <i class="fa fa-sign-out fa-lg fa-fw"></i>logout</a></li>
           </ul>
         </li>
       </ul>
@@ -84,25 +79,38 @@ Comments</a></li>
 Users</a></li>
             <li><a href="#"> <i class="fa fa-user fa-lg fa-fw"></i>
 Profile</a></li>
-          </udthl>
+          </ul>
 
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-<!--           <h1 class="page-header">Dashboard</h1>
- -->    @yield('content')
+        @yield('content')
 
 
 
         </div>
       </div>
     </div>
+  <script type="text/javascript">
+
+      $("#tags").select2({
+          tags: true,
+          tokenSeparators: [',', ' ']
+
+      });
+      $("#category").select2({
+          tags: true,
+          tokenSeparators: [',', ' ']
+
+      });
+  </script>
 <script src="{!!asset('js/ckeditor/ckeditor.js') !!}"></script>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{!! asset('js/plugin.js')!!}"></script>
+
 
     <script src="{!! asset('js/jquery-1.11.3.min.js')!!}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{!! asset('js/bootstrap.min.js')!!}"></script>
+  <script src="{!! asset('js/plugin.js')!!}"></script>
   </body>
 </html>

@@ -28,12 +28,21 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password','first_name','last_name','confirmed','avatar','role'];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['password', 'remember_token','confirmation_code','confirmed'];
+
+
+     public function isAdmin()
+    {
+
+        return $this->role == 'admin';
+    }
 }
+
+

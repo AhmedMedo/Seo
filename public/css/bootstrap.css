@@ -4266,6 +4266,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-fixed-bottom .navbar-collapse {
     padding-left: 0;
     padding-right: 0;
+    padding-bottom: 20px;
   }
 }
 .navbar-fixed-top .navbar-collapse,

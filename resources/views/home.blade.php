@@ -4,7 +4,7 @@ Seo website @stop
 @section('keywords')
 Seo,search engine optimisation,marketing @stop
 @section('content')
-              <div class="box">
+              <div class="box shadow">
                   <h2>categories</h2>
                   <div class="row">
                     <div class="col-lg-4">
@@ -67,8 +67,8 @@ Seo,search engine optimisation,marketing @stop
               </div>
 
               <!-- Courses Section -->
-               <div class="box">
-                  <h2>Courses</h2>
+               <div class="box shadow">
+                  <h2>Tutorials</h2>
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="card">
@@ -128,5 +128,5 @@ Seo,search engine optimisation,marketing @stop
                   </div><!--end of the row !-->
 
               </div>
-                 
+               
   @stop

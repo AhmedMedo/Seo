@@ -56,7 +56,7 @@ class PostController extends Controller
     {
         // view all posts
         $posts=Post::all();
-                return view('admin.allposts',compact('posts'));
+        return view('admin.allposts',compact('posts'));
 
 
     }
@@ -89,7 +89,7 @@ class PostController extends Controller
 
           $validator = Validator::make($request->all(), [
             'title' => 'required|unique:posts|max:67',
-            'image'=>'required|image|mimes:jpeg,png|max:2000'
+            'image'=>'required|image|mimes:jpeg,png|max:5000'
         ]);
            if ($validator->fails()) {
             return redirect('seodashboard/posts/create')
